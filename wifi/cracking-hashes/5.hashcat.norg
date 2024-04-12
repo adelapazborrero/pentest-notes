@@ -1,0 +1,18 @@
+
+* Installing hashcat utils
+@code bash
+sudo apt install hashcat-utils
+@end
+___
+
+* Converting cap file to hccapx
+@code bash
+/usr/lib/hashcat-utils/cap2hccapx.bin wifu-01.cap output.hccapx
+@end
+___
+
+* Cracking WPA with hashcat
+@code bash
+hashcat -m 2500 output.hccapx /usr/share/john/password.lst
+@end
+___

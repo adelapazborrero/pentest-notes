@@ -1,0 +1,11 @@
+It can crack WEP and WPA/WPA2 networks that use pre-shared keys or PMKID.
+
+* Benchmark Aircrack-ng speed
+@code bash
+sudo aircrack-ng -S
+
+8285.720 k/s
+
+8285 passwords per second
+@end
+___

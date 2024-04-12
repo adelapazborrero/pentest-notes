@@ -1,0 +1,97 @@
+
+* Set WiFi adapter in Monitor mode
+@code bash
+sudo ip link set wlan0 down
+sudo iwconfig wlan0 mode monitor
+sudo ip link set wlan0 up
+@end
+___
+
+* Set WiFi adapter in Managed mode
+@code bash
+sudo ip link set wlan0 down
+sudo iwconfig wlan0 mode managed 
+sudo ip link set wlan0 up
+@end
+___
+
+* Dumping traffic for available channels
+@code bash
+sudo airodump-ng wlan0mon
+@end
+___
+
+* Wireshark binary help
+@code bash
+wireshark --help
+@end
+___
+
+* Wireshark display interfaces
+@code bash
+sudo wireshark -D
+@end
+___
+
+* Wireshark dump start
+@code bash
+sudo wireshark -i wlan0mon -k
+sudo wireshark -i 4 -k # 4 is number of interface
+@end
+___
+
+* Wireshark set interface in monitor and dump start
+@code bash
+sudo wireshark -i wlan0 -I -k
+@end
+___
+
+* Wireshark open saved files
+@code bash
+wireshark saved-file.pcap
+@end
+___
+
+* Dumping data with tcpdump
+@code bash
+sudo tcpdump -i wlan1 -w - -U
+@end
+___
+
+* Dumping data with dumpcap 
+@code bash
+sudo dumpcap -w - -P -i wlan1
+@end
+___
+
+* Dumping data with tshark
+@code bash
+sudo tshark -w - -i wlan1
+@end
+___
+
+* Pipe dump output to wireshark
+@code bash
+sudo tcpdump -U -w - -i wlan1 | wireshark -k -i -
+@end
+___
+
+* Named Pipe dump output to wireshark
+@code bash
+# Create a pipe
+mkfifo /tmp/named_pipe
+
+# Forward dump to pipe
+sudo wireshark -k -i /tmp/named_pipe
+
+# Start dump
+sudo tcpdump -U -w - -i wlan1 > /tmp/named_pipe
+@end
+___
+
+* Remotely dumping to local wireshark
+@code bash
+ssh root@10.11.0.196 "sudo -S tcpdump -U -w - -i <interface>" | sudo wireshark -k -i -
+@end
+___
+

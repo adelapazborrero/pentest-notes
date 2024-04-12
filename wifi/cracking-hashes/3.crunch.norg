@@ -1,0 +1,69 @@
+* Patterns
+@code bash
+@ represents lowercase characters or characters from a defined set
+, represents uppercase characters
+% represent numbers
+^ represents symbols
+
+# example
+crunch 11 11 -t password%%%
+# or
+crunch 11 11 0123456789 -t password@@@
+
+# result
+lines: 1000
+password000
+password001
+password002
+password003
+...
+@end
+___
+
+* Create all possible combinations with 8 characters with abc123
+@code bash
+crunch 8 9 abc123
+
+lines: 11757312
+aaaaaaaa
+aaaaaaab
+aaaaaaac
+aaaaaaa1
+aaaaaaa2
+...
+@end
+___
+
+* Create all possible combinations with a set of words
+@code bash
+crunch 1 1 -p dog cat bird
+
+lines: 6
+birdcatdog
+birddogcat
+catbirddog
+catdogbird
+dogbirdcat
+...
+@end
+___
+
+* Create all possible combinations with a set of words and appending numbers
+@code bash
+crunch 5 5 -t ddd%% -p dog cat bird
+
+lines: 600
+birdcatdog00
+birdcatdog01
+birdcatdog02
+birdcatdog03
+birdcatdog04
+...
+@end
+___
+
+* Piping output to aircrack-ng
+@code bash
+crunch 11 11 -t password%%% | aircrack-ng -e wifu crunch-01.cap -w -
+@end
+___

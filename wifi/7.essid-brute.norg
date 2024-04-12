@@ -1,0 +1,6 @@
+* Get essid with mdk4
+@code bash
+airmon-ng start wlan0
+iwconfig wlan0mon channel 1
+mdk4 wlan0mon p -t F0:9F:C2:71:22:11 -f ~/rockyou.txt
+@end

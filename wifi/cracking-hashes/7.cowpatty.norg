@@ -1,0 +1,18 @@
+
+* Installing tool (not preinstalled in kali)
+@code bash
+sudo apt install cowpatty
+@end
+___
+
+* Generate precomputed hashes (wifu being the essid)
+@code bash
+genpmk -f /usr/share/john/password.lst -d output_file -s wifu
+@end
+___
+
+* Crack the rainboy table with Cowpatty
+@code bash
+cowpatty -r wpajohn-01.cap -d output_file -s wifu
+@end
+___

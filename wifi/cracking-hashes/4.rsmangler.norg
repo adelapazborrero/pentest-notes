@@ -1,0 +1,38 @@
+
+* Sample usage
+@code bash
+echo bird > wordlist.txt
+echo cat >> wordlist.txt
+echo dog >> wordlist.txt
+
+rsmangler --file wordlist.txt --output passwords.txt
+
+cat passwords txt
+
+bird
+cat
+dog
+birdcat
+birddog
+...
+@end
+___
+
+* Min and max length
+@code bash
+rsmangler --file wordlist.txt --min 12 --max 13
+
+catbirdadmin
+catdogcatdog
+admindogbird
+dogbirdadmin
+dogcatdogcat
+...
+@end
+___
+
+* Piping output to aircrack-ng
+@code bash
+rsmangler --file wordlist.txt --min 12 --max 13 | aircrack-ng -e wifu rsmangler-01.cap -w -
+@end
+___

@@ -1,0 +1,10 @@
+* Installing bettercap
+@code bash
+sudo apt install bettercap
+@end
+___
+
+* Start bettercap on preferred interface
+@code bash
+sudo bettercap -iface wlan1
+@end
